@@ -10,7 +10,7 @@ const EpisodesProvider = ({ children }: { children: React.ReactNode }) => {
   const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
   const getEpisodes = async () => {
-    const query = `query { episodes { id show { id image { medium } summary }  }}`;
+    const query = `query { episodes { id show { id name image { medium } summary }  }}`;
     const { data } = await axios.post("http://localhost:3000/api/graphql", {
       query,
     });
