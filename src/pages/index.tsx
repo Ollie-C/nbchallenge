@@ -1,4 +1,6 @@
+import EpisodesProvider from "@/contexts/episodesContext";
 import Head from "next/head";
+import Episodes from "../components/Episodes/Episodes";
 
 export default function Home() {
   return (
@@ -10,7 +12,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="main">
-        <p>Hi</p>
+        <EpisodesProvider>
+          <Episodes />
+        </EpisodesProvider>
       </main>
     </>
   );
