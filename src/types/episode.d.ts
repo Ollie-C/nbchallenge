@@ -1,6 +1,8 @@
 export interface IEpisode {
   id: number;
   show: IShow;
+  season: number;
+  number: number;
 }
 
 export interface IShow {

@@ -1,16 +1,14 @@
 import Link from "next/link";
-import { IShow } from "../../types/episode";
+import { IShow, IEpisode } from "../../types/episode";
 //Styles
 import styles from "./EpisodeCard.module.scss";
 
-const EpisodeCard = ({ episode }: { episode: IShow }) => {
-  if (!episode) {
-    return <p>Loading . . . </p>;
-  }
+const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
+  const show: IShow = episode.show;
 
   const noDetails = <p>No details</p>;
 
-  const background = episode.image ? `url(${episode.image.medium})` : "white";
+  const background = show.image ? `url(${show.image.medium})` : "white";
 
   //Shorten and remove HTML tags
   const processSummary = (summary: string) => {
@@ -21,17 +19,23 @@ const EpisodeCard = ({ episode }: { episode: IShow }) => {
       .replace(/(<([^>]+)>)/gi, "");
   };
 
-  const summary = episode.summary ? processSummary(episode.summary) : noDetails;
+  const summary = show.summary ? processSummary(show.summary) : noDetails;
 
   return (
     <div className={styles.episodecard}>
-      <Link href={`/shows/${episode.id}`}>
+      <Link href={`/shows/${show.id}`}>
         <div
           className={styles.episodecard__image}
           style={{ backgroundImage: background }}
         ></div>
-        <div className={styles.episodecard__details}>
-          <h3>{episode.name}</h3>
+        <div className={styles.episodecard__content}>
+          <div className={styles.episodecard__details}>
+            <p>
+              Season: {String(episode.season)} Episode: {String(episode.number)}
+            </p>
+            <h3>{show.name}</h3>
+          </div>
+
           <p>{summary}</p>
         </div>
       </Link>

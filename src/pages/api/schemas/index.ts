@@ -18,7 +18,7 @@ const schema = createSchema({
     id: ID!
     image: String 
     season: Int
-    episode: Int
+    number: Int
     rating: String
     airdate: String!
     airtime: String!

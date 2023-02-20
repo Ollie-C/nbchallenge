@@ -1,4 +1,14 @@
 .episodes {
+  margin: 8rem 4rem;
+
+  &__header {
+    padding: 1rem;
+  }
+}
+
+.episodeContainer {
+  width: 100%;
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
 }
