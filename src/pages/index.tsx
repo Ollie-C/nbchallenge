@@ -1,3 +1,4 @@
+import Header from "@/components/Header/Header";
 import EpisodesProvider from "@/contexts/episodesContext";
 import Head from "next/head";
 import Episodes from "../components/Episodes/Episodes";
@@ -11,6 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Header />
       <main className="main">
         <EpisodesProvider>
           <Episodes />

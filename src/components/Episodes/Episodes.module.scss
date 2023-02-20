@@ -1,7 +1,8 @@
 .episodes {
-  margin: 8rem 4rem;
+  margin: 12rem 4rem;
 
   &__header {
+    z-index: 1;
     padding: 1rem;
   }
 }

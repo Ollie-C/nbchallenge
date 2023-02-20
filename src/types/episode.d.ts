@@ -7,14 +7,26 @@ export interface IEpisode {
 
 export interface IShow {
   id: number;
-  image: IImage;
   name: string;
+  status: string;
   summary: string;
-  genres: string;
+  genres: string[];
+  network: INetwork;
+  schedule: ISchedule;
+  image: IImage;
 }
 
 export interface IImage {
   medium: string;
+  original: string;
+}
+
+export interface ISchedule {
+  days: string[];
+}
+
+export interface INetwork {
+  name: string;
 }
 
 export type EpisodeContextType = {

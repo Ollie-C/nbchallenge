@@ -2,6 +2,8 @@ import Link from "next/link";
 import { IShow, IEpisode } from "../../types/episode";
 //Styles
 import styles from "./EpisodeCard.module.scss";
+//Helpers
+import { processSummary } from "../../utils/helpers";
 
 const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
   const show: IShow = episode.show;
@@ -10,16 +12,7 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
 
   const background = show.image ? `url(${show.image.medium})` : "white";
 
-  //Shorten and remove HTML tags
-  const processSummary = (summary: string) => {
-    return summary
-      .split(" ")
-      .slice(0, 10)
-      .join(" ")
-      .replace(/(<([^>]+)>)/gi, "");
-  };
-
-  const summary = show.summary ? processSummary(show.summary) : noDetails;
+  const summary = show.summary ? processSummary(show.summary, 10) : noDetails;
 
   return (
     <div className={styles.episodecard}>

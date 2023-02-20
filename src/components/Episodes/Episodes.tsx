@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { motion } from "framer-motion";
 //Context
 import { EpisodesContext } from "@/contexts/episodesContext";
 //Components
@@ -15,11 +16,15 @@ const Episodes = () => {
   return (
     <section className={styles.episodes}>
       <h2 className={styles.episodes__header}>Last Added Shows</h2>
-      <div className={styles.episodeContainer}>
+      <motion.div
+        whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+        transition={{ duration: 1 }}
+        className={styles.episodeContainer}
+      >
         {episodes.map((episode) => (
           <EpisodeCard key={episode.id} episode={episode} />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

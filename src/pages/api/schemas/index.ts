@@ -29,14 +29,35 @@ const schema = createSchema({
   type Show {
     id: ID!
     name: String
-    genres: String
     status: String
     summary: String
+    schedule: Schedule
+    network: Network
+    genres: [String]
     image: Image
   }
 
   type Image {
     medium: String
+    original: String
+  }
+
+  type Schedule {
+    days: [String]
+  }
+
+  type Network {
+    name: String
+  }
+
+  type Cast {
+    id: ID!
+    name: String
+    character: Character
+  }
+
+  type Character {
+    name: String
   }
 
 `,
