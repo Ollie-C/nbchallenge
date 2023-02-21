@@ -1,7 +1,9 @@
+@use "../../styles/partials/variables" as *;
+
 .header {
   height: 40vh;
   width: 100%;
-  background-color: #f5fbef;
+  background-color: $primary-white;
   display: flex;
   position: absolute;
   top: 0;

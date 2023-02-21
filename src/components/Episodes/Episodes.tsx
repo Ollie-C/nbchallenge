@@ -1,17 +1,19 @@
-import { useContext } from "react";
 import { motion } from "framer-motion";
-//Context
-import { EpisodesContext } from "@/contexts/episodesContext";
+import { ShowsContext } from "@/contexts/ShowsContext";
 //Components
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 //Styles
 import styles from "./Episodes.module.scss";
+import { useContext } from "react";
 
 const Episodes = () => {
-  const { episodes } = useContext(EpisodesContext);
-  console.log(episodes);
-  if (episodes.length < 0) {
-    return <p>Loading ... </p>;
+  const { episodes } = useContext(ShowsContext);
+  if (!episodes) {
+    return (
+      <div className={styles.loading}>
+        <h3>Loading ... </h3>
+      </div>
+    );
   }
   return (
     <section className={styles.episodes}>

@@ -1,6 +1,16 @@
-import "../styles/main.scss";
 import type { AppProps } from "next/app";
+import Layout from "@/components/Layout";
+import "../styles/main.scss";
+import ShowsProvider from "@/contexts/ShowsContext";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <Layout>
+      <ShowsProvider>
+        <Component {...pageProps} />
+      </ShowsProvider>
+    </Layout>
+  );
+};
+
+export default App;

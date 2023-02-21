@@ -11,24 +11,30 @@ export interface IShow {
   status: string;
   summary: string;
   genres: string[];
-  network: INetwork;
-  schedule: ISchedule;
+  network: {
+    name: string;
+  };
+  schedule: {
+    days: string[];
+  };
   image: IImage;
 }
 
-export interface IImage {
+interface IImage {
   medium: string;
   original: string;
 }
 
-export interface ISchedule {
-  days: string[];
-}
-
-export interface INetwork {
+interface ICast {
+  id: number;
   name: string;
+  character: {
+    name: string;
+  };
 }
 
-export type EpisodeContextType = {
+export interface IShowsContext {
   episodes: IEpisode[];
-};
+  show?: IShow;
+  getShow: (id: number) => void;
+}

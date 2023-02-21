@@ -4,8 +4,11 @@ import { IShow, IEpisode } from "../../types/episode";
 import styles from "./EpisodeCard.module.scss";
 //Helpers
 import { processSummary } from "../../utils/helpers";
+import { useContext } from "react";
+import { ShowsContext } from "@/contexts/ShowsContext";
 
 const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
+  const { getShow } = useContext(ShowsContext);
   const show: IShow = episode.show;
 
   const noDetails = <p>No details</p>;
@@ -16,7 +19,7 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
 
   return (
     <div className={styles.episodecard}>
-      <Link href={`/shows/${show.id}`}>
+      <Link href={`/shows/${show.id}`} onClick={() => getShow(show.id)}>
         <div
           className={styles.episodecard__image}
           style={{ backgroundImage: background }}
