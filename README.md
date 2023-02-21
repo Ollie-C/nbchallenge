@@ -8,7 +8,7 @@ Github: https://github.com/Ollie-C/tvbland
 
 tvbland is a TV show app that allows users to browse the latest added TV shows in the UK and look up individual show details including a rating, cast list and weekly schedule.
 
-Built in Next.js, tvbland makes use of the inbuilt API capability and implements a graphQL wrapper built on a graphql-yoga server for a REST API. This is a SPA that combines SSR and CSR. 
+Built in Next.js, tvbland makes use of the inbuilt API capability and implements a graphQL wrapper built on a graphql-yoga server for a REST API. 
 
 ### Screenshots
 [Coming soon]
@@ -22,7 +22,7 @@ Built in Next.js, tvbland makes use of the inbuilt API capability and implements
 ## Details
 
 ### Tools
-- Framework: Next.js for SSR, in-built API and image optimisation. Better accessibility and loads times.
+- Framework: Next.js for in-built API and image optimisation. Better accessibility and load times.
 - Language: TypeScript for type safety and ability to match custom types with graphql schema
 - GraphQL server: graphql-yoga for ease of set-up
 - Styling: SASS for organised stylesheets with nesting. Framer-motion for natural animations to complement a minimalist theme
