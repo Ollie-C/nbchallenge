@@ -20,7 +20,6 @@ const ShowsProvider = ({ children }: { children: React.ReactNode }) => {
       query,
     });
     const episodes = data.data.episodes;
-
     setEpisodes(episodes);
   };
 

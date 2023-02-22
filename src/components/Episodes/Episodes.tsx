@@ -1,20 +1,23 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { ShowsContext } from "@/contexts/ShowsContext";
 //Components
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import Navigation from "../Pagination/Pagination";
-//Styles
+//Stying
 import { motion } from "framer-motion";
 import styles from "./Episodes.module.scss";
+import Image from "next/image";
+//Helpers
 import { getDisplayedEpisodes } from "@/utils/helpers";
 
 const Episodes = () => {
   const { episodes } = useContext(ShowsContext);
+  const [filteredEpisodes, setFilteredEpisodes] = useState([]);
 
   //Create pagination - 18 episodes per page
   const [currentPage, setCurrentPage] = useState(1);
-  const displayedEpisodes = getDisplayedEpisodes(episodes, currentPage);
-  const totalPages = Math.ceil(episodes.length / 18);
+  const displayedEpisodes = getDisplayedEpisodes(filteredEpisodes, currentPage);
+  const totalPages = Math.ceil(filteredEpisodes.length / 18);
 
   //Navigation
   const changePage = (change: any) => {
@@ -27,10 +30,25 @@ const Episodes = () => {
     return setCurrentPage(change);
   };
 
+  //Filter search
+  const handleChange = (e: any) => {
+    e.preventDefault();
+    const { value } = e.target;
+    setFilteredEpisodes(
+      episodes.filter((episode) => episode.show.name.toLowerCase().match(value))
+    );
+  };
+
+  useEffect(() => {
+    if (episodes.length > 0) {
+      setFilteredEpisodes(episodes);
+    }
+  }, [episodes]);
+
   if (!episodes) {
     return (
       <div className={styles.loading}>
-        <h3>Loading ... </h3>
+        <h3>No results found ... </h3>
       </div>
     );
   }
@@ -44,7 +62,16 @@ const Episodes = () => {
       </div>
       <div className={styles.episodes__header}>
         <h3>Last Added Shows</h3>
-        <input type="text" />
+        <div className={styles.episodes__search}>
+          <Image
+            src="/icons/searchicon.svg"
+            alt="search icon"
+            width="16"
+            height="16"
+            className={styles.episodes__icon}
+          />
+          <input type="text" onChange={(e) => handleChange(e)} />
+        </div>
       </div>
 
       <motion.div

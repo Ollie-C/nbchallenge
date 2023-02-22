@@ -4,10 +4,10 @@
 .intro {
   width: 60%;
   background-color: $primary-white;
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 5px;
-  padding: 0 1rem;
-  margin: 2rem 1rem;
+  // padding: 0 1rem;
+  margin: 2rem 0;
   p {
     line-height: 1.5rem;
     font-size: 1.3rem;
@@ -15,8 +15,6 @@
 }
 
 .episodes {
-  margin: $desktop-margin;
-
   &__header {
     width: 100%;
     @include flex(row, space-between, center);
@@ -26,23 +24,34 @@
     h3 {
       font-size: 1.3rem;
     }
+  }
 
+  &__search {
+    width: 15%;
+    position: relative;
     input {
       background: none;
       border-radius: 5px;
       border: none;
       padding: 4px 1.8rem;
       background-color: $primary-white;
-      width: 15%;
+      width: 100%;
       outline: 1px solid $primary-green;
     }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 5px;
+    left: 5px;
   }
 }
 
 .episodeContainer {
   width: 100%;
-  @include flex(row, space-between, center);
+  @include flex(row, center, center);
   flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .loading {
