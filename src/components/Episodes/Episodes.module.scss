@@ -2,24 +2,45 @@
 @use "../../styles/partials/variables" as *;
 
 .intro {
-  width: 60%;
+  text-align: center;
+  min-height: 8rem;
+  width: 100%;
+
   background-color: $primary-white;
   // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 5px;
   // padding: 0 1rem;
   margin: 2rem 0;
+  @include tablet {
+    text-align: left;
+    width: 70%;
+    min-height: 6.5rem;
+  }
+
+  @include desktop {
+    width: 60%;
+    min-height: 3rem;
+  }
   p {
     line-height: 1.5rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
+
+    @include tablet {
+      font-size: 1.3rem;
+    }
   }
 }
 
 .episodes {
   &__header {
     width: 100%;
-    @include flex(row, space-between, center);
     z-index: 1;
-    padding: 1rem 0;
+    padding: 0.2rem 0;
+    @include flex(column, center, center);
+
+    @include tablet {
+      @include flex(row, space-between, center);
+    }
 
     h3 {
       font-size: 1.3rem;
@@ -28,7 +49,16 @@
 
   &__countries {
     @include flex(row, space-between, center);
-    width: 30%;
+    width: 100%;
+    flex-wrap: wrap;
+
+    @include tablet {
+      width: 50%;
+    }
+
+    @include desktop {
+      width: 30%;
+    }
   }
 
   &__country {
@@ -41,31 +71,44 @@
   }
 
   &__search {
-    width: 15%;
+    width: 60%;
     position: relative;
+    @include tablet {
+      width: 30%;
+    }
+    @include desktop {
+      width: 15%;
+    }
     input {
       background: none;
       border-radius: 5px;
       border: none;
-      padding: 4px 1.8rem;
+      padding: 0.5rem 1.8rem;
       background-color: $primary-white;
       width: 100%;
       outline: 1px solid $primary-green;
+
+      @include tablet {
+        padding: 4px 1.8rem;
+      }
     }
   }
 
   &__icon {
     position: absolute;
-    top: 5px;
     left: 5px;
+    top: 8px;
+    @include tablet {
+      top: 5px;
+    }
   }
 }
 
 .episodeContainer {
   width: 100%;
-  @include flex(row, center, center);
   flex-wrap: wrap;
   padding: 1rem;
+  @include flex(row, center, center);
 }
 
 .loading {

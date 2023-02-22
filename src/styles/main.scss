@@ -3,5 +3,9 @@
 @use "./partials/variables" as *;
 
 .main {
-  margin: 8rem $desktop-margin;
+  margin: 6rem 2rem;
+
+  @include tablet {
+    margin: 8rem $desktop-margin;
+  }
 }

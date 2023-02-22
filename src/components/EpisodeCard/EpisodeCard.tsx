@@ -1,8 +1,9 @@
 import Link from "next/link";
 //Types
 import { IEpisode } from "../../types/episode";
-//Styles
+//Styling
 import styles from "./EpisodeCard.module.scss";
+import Image from "next/image";
 //Helpers
 import { processSummary } from "../../utils/helpers";
 
@@ -26,13 +27,20 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
         ></div>
 
         <div className={styles.episodecard__details}>
-          <p>
-            Season: {String(season)} Episode: {String(number)} Rating:{" "}
-            {rating.average ? rating.average : "-"}
-          </p>
-
-          <h3>{name}</h3>
-          <p>{shortSummary}</p>
+          <div className={styles.episodecard__detailsTop}>
+            <p>
+              S: {String(season)} / Ep.: {String(number)}
+            </p>
+            {rating.average && (
+              <div className={styles.episodecard__rating}>
+                <p>{rating.average}</p>
+              </div>
+            )}
+          </div>
+          <div>
+            <h3>{name}</h3>
+            <p>{shortSummary}</p>
+          </div>
         </div>
       </Link>
     </div>

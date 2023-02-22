@@ -1,32 +1,41 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .header {
   height: 50vh;
   width: 100%;
   background-color: $primary-white;
-  display: flex;
+  @include flex(row, center, flex-start);
   position: absolute;
   top: 0;
   z-index: -1;
   background-size: cover;
 
+  @include tablet {
+    justify-content: flex-start;
+  }
+
   h1 {
-    margin: 3rem $desktop-margin;
+    margin: 3rem 0;
     &:hover {
       cursor: pointer;
     }
+
+    @include tablet {
+      margin: 3rem $desktop-margin;
+    }
   }
 
-  &__background {
-    height: 50vh;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 70%;
-    z-index: -2;
-  }
+  // &__background {
+  //   height: 50vh;
+  //   width: 100%;
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   background-size: cover;
+  //   background-position: center;
+  //   background-repeat: no-repeat;
+  //   opacity: 70%;
+  //   z-index: -2;
+  // }
 }

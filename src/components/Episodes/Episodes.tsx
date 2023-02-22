@@ -3,7 +3,7 @@ import { ShowsContext } from "@/contexts/ShowsContext";
 //Components
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import Navigation from "../Pagination/Pagination";
-//Stying
+//Styling
 import { motion } from "framer-motion";
 import styles from "./Episodes.module.scss";
 import Image from "next/image";
