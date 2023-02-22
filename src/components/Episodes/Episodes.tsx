@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
+import { useContext } from "react";
 import { ShowsContext } from "@/contexts/ShowsContext";
 //Components
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 //Styles
+import { motion } from "framer-motion";
 import styles from "./Episodes.module.scss";
-import { useContext } from "react";
 
 const Episodes = () => {
   const { episodes } = useContext(ShowsContext);
@@ -17,7 +17,17 @@ const Episodes = () => {
   }
   return (
     <section className={styles.episodes}>
-      <h2 className={styles.episodes__header}>Last Added Shows</h2>
+      <div className={styles.intro}>
+        <p>
+          TV Show and web series database. Create personalised schedules.
+          Episode guide, cast, crew and character information.
+        </p>
+      </div>
+      <div className={styles.episodes__header}>
+        <h3>Last Added Shows</h3>
+        <input type="text" />
+      </div>
+
       <motion.div
         whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
         transition={{ duration: 1 }}

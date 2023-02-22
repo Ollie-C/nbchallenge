@@ -1,25 +1,27 @@
 import Link from "next/link";
-import { IShow, IEpisode } from "../../types/episode";
+//Types
+import { IEpisode } from "../../types/episode";
 //Styles
 import styles from "./EpisodeCard.module.scss";
 //Helpers
 import { processSummary } from "../../utils/helpers";
-import { useContext } from "react";
-import { ShowsContext } from "@/contexts/ShowsContext";
 
 const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
-  const { getShow } = useContext(ShowsContext);
-  const show: IShow = episode.show;
+  const { id, number, season, show } = episode;
+  const { image, name, summary } = show;
 
+  //Conditional image render
+  const background = `url(${image?.medium})`;
+
+  //Shorten summary length
   const noDetails = <p>No details</p>;
+  const shortSummary = summary ? processSummary(summary, 10) : noDetails;
 
-  const background = show.image ? `url(${show.image.medium})` : "white";
-
-  const summary = show.summary ? processSummary(show.summary, 10) : noDetails;
+  console.log(episode);
 
   return (
     <div className={styles.episodecard}>
-      <Link href={`/shows/${show.id}`} onClick={() => getShow(show.id)}>
+      <Link href={`/shows/${id}`}>
         <div
           className={styles.episodecard__image}
           style={{ backgroundImage: background }}
@@ -27,12 +29,12 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
         <div className={styles.episodecard__content}>
           <div className={styles.episodecard__details}>
             <p>
-              Season: {String(episode.season)} Episode: {String(episode.number)}
+              Season: {String(season)} Episode: {String(number)}
             </p>
-            <h3>{show.name}</h3>
+            <h3>{name}</h3>
           </div>
 
-          <p>{summary}</p>
+          <p>{shortSummary}</p>
         </div>
       </Link>
     </div>

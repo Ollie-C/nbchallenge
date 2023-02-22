@@ -35,6 +35,4 @@ interface ICast {
 
 export interface IShowsContext {
   episodes: IEpisode[];
-  show?: IShow;
-  getShow: (id: number) => void;
 }

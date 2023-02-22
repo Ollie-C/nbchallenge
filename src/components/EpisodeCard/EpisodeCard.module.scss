@@ -1,13 +1,13 @@
 .episodecard {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-  border-radius: 10px;
-  margin: 0.5rem;
-  width: 15%;
+  border-radius: 5px;
+  width: 16%;
   background-color: #f5fbef;
   border: 1px solid #f5fbef;
+  margin: 0.5rem 0;
 
   &__image {
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     height: 10rem;
     background-size: cover;
     background-position: top;
@@ -16,10 +16,11 @@
   }
 
   &__content {
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 5px 5px;
     padding: 0.2rem 0.8rem;
     display: flex;
     flex-direction: column;
+    height: 12rem;
   }
 
   &__details {
