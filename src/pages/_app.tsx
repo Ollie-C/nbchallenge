@@ -5,11 +5,11 @@ import ShowsProvider from "@/contexts/ShowsContext";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <Layout>
-      <ShowsProvider>
+    <ShowsProvider>
+      <Layout>
         <Component {...pageProps} />
-      </ShowsProvider>
-    </Layout>
+      </Layout>
+    </ShowsProvider>
   );
 };
 

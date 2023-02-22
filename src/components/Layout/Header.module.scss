@@ -1,7 +1,7 @@
 @use "../../styles/partials/variables" as *;
 
 .header {
-  height: 40vh;
+  height: 50vh;
   width: 100%;
   background-color: $primary-white;
   display: flex;
@@ -9,4 +9,24 @@
   top: 0;
   padding: 3rem 4rem;
   z-index: -1;
+  background-size: cover;
+
+  h1 {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__background {
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 70%;
+    z-index: -2;
+  }
 }

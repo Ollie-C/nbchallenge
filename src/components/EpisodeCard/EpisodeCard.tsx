@@ -8,7 +8,7 @@ import { processSummary } from "../../utils/helpers";
 
 const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
   const { id, number, season, show } = episode;
-  const { image, name, summary } = show;
+  const { image, name, summary, rating } = show;
 
   //Conditional image render
   const background = `url(${image?.medium})`;
@@ -17,8 +17,6 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
   const noDetails = <p>No details</p>;
   const shortSummary = summary ? processSummary(summary, 10) : noDetails;
 
-  console.log(episode);
-
   return (
     <div className={styles.episodecard}>
       <Link href={`/shows/${id}`}>
@@ -26,14 +24,14 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
           className={styles.episodecard__image}
           style={{ backgroundImage: background }}
         ></div>
-        <div className={styles.episodecard__content}>
-          <div className={styles.episodecard__details}>
-            <p>
-              Season: {String(season)} Episode: {String(number)}
-            </p>
-            <h3>{name}</h3>
-          </div>
 
+        <div className={styles.episodecard__details}>
+          <p>
+            Season: {String(season)} Episode: {String(number)} Rating:{" "}
+            {rating.average ? rating.average : "-"}
+          </p>
+
+          <h3>{name}</h3>
           <p>{shortSummary}</p>
         </div>
       </Link>

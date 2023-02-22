@@ -18,6 +18,9 @@ export interface IShow {
     days: string[];
   };
   image: IImage;
+  rating: {
+    average: number;
+  };
 }
 
 interface IImage {
@@ -35,4 +38,6 @@ interface ICast {
 
 export interface IShowsContext {
   episodes: IEpisode[];
+  currentShow: IShow;
+  randomShow: () => void;
 }

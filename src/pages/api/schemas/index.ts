@@ -33,6 +33,7 @@ const schema = createSchema({
     summary: String
     schedule: Schedule
     network: Network
+    rating: Rating
     genres: [String]
     image: Image
   }
@@ -58,6 +59,10 @@ const schema = createSchema({
 
   type Character {
     name: String
+  }
+
+  type Rating {
+    average: Float
   }
 
 `,
