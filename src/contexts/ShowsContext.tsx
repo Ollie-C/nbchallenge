@@ -4,6 +4,7 @@ import { IShowsContext, IEpisode, IShow } from "../types/episode";
 
 export const ShowsContext = createContext<IShowsContext>({
   episodes: [],
+  getEpisodes: () => {},
   currentShow: null,
   randomShow: () => {},
 });
@@ -14,13 +15,17 @@ const ShowsProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentShow, setCurrentShow] = useState<IShow>(null);
 
   //Fetch episodes
-  const getEpisodes = async () => {
-    const query = `query { episodes { id season number show { id name rating { average } image { medium original } summary }  }}`;
+  const getEpisodes = async (country: string) => {
+    const query = `query { episodes(name:"${country}") { id season number show { id name rating { average } image { medium original } summary }  }}`;
     const { data } = await axios.post("http://localhost:3000/api/graphql", {
       query,
     });
-    const episodes = data.data.episodes;
-    setEpisodes(episodes);
+    try {
+      const episodes = data.data.episodes;
+      setEpisodes(episodes);
+    } catch (e) {
+      console.error(data.errors[0].message);
+    }
   };
 
   //Create a random banner
@@ -30,11 +35,13 @@ const ShowsProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    getEpisodes();
+    getEpisodes("GB");
   }, []);
 
   return (
-    <ShowsContext.Provider value={{ episodes, randomShow, currentShow }}>
+    <ShowsContext.Provider
+      value={{ episodes, getEpisodes, randomShow, currentShow }}
+    >
       {children}
     </ShowsContext.Provider>
   );

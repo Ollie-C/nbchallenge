@@ -2,7 +2,7 @@ import { createSchema } from "graphql-yoga";
 import axios from "axios";
 
 //TV Maze endpoint for episodes showing in the UK, at today's date (default)
-const episodesUrl = "https://api.tvmaze.com/schedule?country=GB";
+const episodesUrl = "https://api.tvmaze.com/schedule?country=";
 //TV Maze endpoint for all shows by ID
 const showsUrl = "https://api.tvmaze.com/shows";
 
@@ -10,7 +10,7 @@ const schema = createSchema({
   typeDefs: `
 
   type Query {
-    episodes: [Episode]
+    episodes(name: String): [Episode]
     show(id: ID!): Show
   }
 
@@ -68,8 +68,8 @@ const schema = createSchema({
 `,
   resolvers: {
     Query: {
-      episodes: async () => {
-        const { data } = await axios.get(`${episodesUrl}`);
+      episodes: async (parents, args) => {
+        const { data } = await axios.get(`${episodesUrl}${args.name}`);
         return data;
       },
       show: async (parents, args) => {

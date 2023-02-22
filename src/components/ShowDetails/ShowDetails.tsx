@@ -3,6 +3,7 @@ import { processSummary } from "../../utils/helpers";
 import Cast from "../Cast/Cast";
 
 const ShowDetails = ({ show }) => {
+  console.log(show);
   const { genres, network, schedule, status, image, name, summary } = show;
   return (
     <section className={styles.show}>

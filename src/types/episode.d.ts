@@ -40,4 +40,5 @@ export interface IShowsContext {
   episodes: IEpisode[];
   currentShow: IShow;
   randomShow: () => void;
+  getEpisodes: (string) => void;
 }

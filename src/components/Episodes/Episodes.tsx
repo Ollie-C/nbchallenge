@@ -11,7 +11,7 @@ import Image from "next/image";
 import { getDisplayedEpisodes } from "@/utils/helpers";
 
 const Episodes = () => {
-  const { episodes } = useContext(ShowsContext);
+  const { episodes, getEpisodes } = useContext(ShowsContext);
   const [filteredEpisodes, setFilteredEpisodes] = useState([]);
 
   //Create pagination - 18 episodes per page
@@ -61,7 +61,27 @@ const Episodes = () => {
         </p>
       </div>
       <div className={styles.episodes__header}>
-        <h3>Last Added Shows</h3>
+        <div className={styles.episodes__countries}>
+          <h3>Last Added Shows</h3>
+          <p
+            className={styles.episodes__country}
+            onClick={() => getEpisodes("GB")}
+          >
+            UK
+          </p>
+          <p
+            className={styles.episodes__country}
+            onClick={() => getEpisodes("US")}
+          >
+            US
+          </p>
+          <p
+            className={styles.episodes__country}
+            onClick={() => getEpisodes("JP")}
+          >
+            JAPAN
+          </p>
+        </div>
         <div className={styles.episodes__search}>
           <Image
             src="/icons/searchicon.svg"
