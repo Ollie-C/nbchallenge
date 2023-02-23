@@ -65,6 +65,7 @@ const schema = createSchema({
   type Person {
     id: ID!
     name: String
+    image: Image
   }
 
   type Character {

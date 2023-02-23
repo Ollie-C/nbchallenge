@@ -2,20 +2,20 @@
 @use "../../styles/partials/mixins" as *;
 
 .show {
-  margin: $desktop-margin;
+  margin: 8rem $desktop-margin;
   padding: 0 2rem;
 
-  &__summary,
-  &__details {
+  &__summary {
     width: 100%;
+    line-height: 3rem;
     min-height: 40vh;
-    @include flex(row, flex-start, center);
+    margin-bottom: 1rem;
+    @include flex(row, flex-start, flex-start);
   }
 
   &__image {
     width: 25rem;
     height: 18rem;
-    margin: 2rem 0;
     background-size: cover;
     background-position: center;
     border-radius: 5px;
@@ -28,17 +28,20 @@
       font-size: 2.5rem;
     }
     p {
-      font-size: 1.4rem;
+      line-height: 1.8rem;
+      font-size: 1.3rem;
     }
   }
 
   &__details {
-    justify-content: space-between;
+    height: 30rem;
+    width: 100%;
     color: $primary-white;
+    @include flex(row, space-between, flex-start);
   }
 
   &__info {
-    width: 40%;
+    width: 48%;
 
     h3 {
       color: $primary-brown;
@@ -57,5 +60,21 @@
 
   &__infoContainer {
     @include flex(row, flex-start, center);
+    height: 5rem;
+    margin: 1rem;
+
+    p,
+    b {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__profileImage {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid $primary-brown;
   }
 }

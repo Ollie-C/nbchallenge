@@ -1,6 +1,6 @@
 import styles from "./ShowDetails.module.scss";
 import { processSummary } from "../../utils/helpers";
-import Cast from "../Cast/Cast";
+import Cast from "./CastList";
 
 export const ShowInfo = ({ info }) => {
   const noDetails = "-";
@@ -12,21 +12,30 @@ export const ShowInfo = ({ info }) => {
   );
 };
 
-const ShowDetails = ({ show }) => {
-  const { genres, network, schedule, status, image, name, summary, rating } =
-    show;
-
+const ShowDetails = ({ show, cast }) => {
+  const {
+    genres,
+    network,
+    schedule,
+    status,
+    image,
+    name: showName,
+    summary,
+    rating,
+  } = show;
   const showInfo = [
-    ["Streamed on:", network],
+    ["Streamed on:", network?.name],
     ["Schedule:", schedule.days.join(", ")],
     ["Status:", status],
     ["Genres:", genres.join(", ")],
   ];
 
-  // const cast = [];
+  //Get only first 5 cast members
+  const filteredCast = cast.slice(0, 5);
 
   return (
     <section className={styles.show}>
+      {/* Top */}
       <div className={styles.show__summary}>
         <div
           className={styles.show__image}
@@ -34,19 +43,25 @@ const ShowDetails = ({ show }) => {
         ></div>
         <div className={styles.show__description}>
           <p>{rating ? rating.average : "-"}/10</p>
-          <h2>{name}</h2>
+          <h2>{showName}</h2>
           <p>{summary ? processSummary(summary, 30) : "No show details"}</p>
         </div>
       </div>
+      {/* Bottom */}
       <div className={styles.show__details}>
+        {/* Show Info */}
         <div className={styles.show__info}>
           <h3>Show Info</h3>
           {showInfo &&
             showInfo.map((info) => <ShowInfo key={info[0]} info={info} />)}
         </div>
+        {/* Starring */}
         <div className={styles.show__info}>
           <h3>Starring</h3>
-          {/* {cast && cast.map((person) => <Cast />)} */}
+          {filteredCast.length < 1 && <p>No cast details.</p>}
+          {filteredCast.map((member: any) => (
+            <Cast castMember={member} key={member.person.name} />
+          ))}
         </div>
       </div>
     </section>
