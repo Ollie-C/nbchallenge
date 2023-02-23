@@ -13,7 +13,7 @@
   }
 
   &__image {
-    width: 16rem;
+    width: 25rem;
     height: 18rem;
     margin: 2rem 0;
     background-size: cover;
@@ -53,5 +53,9 @@
       padding: 1rem;
       line-height: 1.2rem;
     }
+  }
+
+  &__infoContainer {
+    @include flex(row, flex-start, center);
   }
 }

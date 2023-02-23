@@ -16,7 +16,7 @@ const ShowsProvider = ({ children }: { children: React.ReactNode }) => {
 
   //Fetch episodes
   const getEpisodes = async (country: string) => {
-    const query = `query { episodes(name:"${country}") { id season number show { id name rating { average } image { medium original } summary }  }}`;
+    const query = `query { episodes(country:"${country}") { id season number show { id name rating { average } image { medium original } summary }  }}`;
     const { data } = await axios.post("http://localhost:3000/api/graphql", {
       query,
     });

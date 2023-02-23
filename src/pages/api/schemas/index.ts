@@ -10,9 +10,11 @@ const schema = createSchema({
   typeDefs: `
 
   type Query {
-    episodes(name: String): [Episode]
+    episodes(country: String): [Episode]
     show(id: ID!): Show
+    cast(id: ID!): [Cast]
   }
+  
 
   type Episode {
     id: ID!
@@ -50,30 +52,41 @@ const schema = createSchema({
   type Network {
     name: String
   }
-
-  type Cast {
-    id: ID!
-    name: String
-    character: Character
-  }
-
-  type Character {
-    name: String
-  }
-
+  
   type Rating {
     average: Float
   }
+
+  type Cast {
+    person: Person
+    character: Character
+  }
+
+  type Person {
+    id: ID!
+    name: String
+  }
+
+  type Character {
+    id: ID!
+    name: String
+  }
+
 
 `,
   resolvers: {
     Query: {
       episodes: async (parents, args) => {
-        const { data } = await axios.get(`${episodesUrl}${args.name}`);
+        const { data } = await axios.get(`${episodesUrl}${args.country}`);
         return data;
       },
       show: async (parents, args) => {
         const { data } = await axios.get(`${showsUrl}/${args.id}`);
+        return data;
+      },
+
+      cast: async (parents, args) => {
+        const { data } = await axios.get(`${showsUrl}/${args.id}/cast`);
         return data;
       },
     },

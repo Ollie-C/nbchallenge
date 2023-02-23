@@ -1,0 +1,33 @@
+{
+  "person": {
+    "id": 172,
+    "url": "https://www.tvmaze.com/people/172/laura-vandervoort",
+    "name": "Laura Vandervoort",
+    "country": {
+      "name": "Canada",
+      "code": "CA",
+      "timezone": "America/Halifax"
+    },
+    "birthday": "1984-09-22",
+    "deathday": null,
+    "gender": "Female",
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/0/1751.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/0/1751.jpg"
+    },
+    "updated": 1532934681,
+    "_links": { "self": { "href": "https://api.tvmaze.com/people/172" } }
+  },
+  "character": {
+    "id": 125,
+    "url": "https://www.tvmaze.com/characters/125/bitten-elena-michaels",
+    "name": "Elena Michaels",
+    "image": {
+      "medium": "https://static.tvmaze.com/uploads/images/medium_portrait/0/16.jpg",
+      "original": "https://static.tvmaze.com/uploads/images/original_untouched/0/16.jpg"
+    },
+    "_links": { "self": { "href": "https://api.tvmaze.com/characters/125" } }
+  },
+  "self": false,
+  "voice": false
+}

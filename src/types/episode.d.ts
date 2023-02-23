@@ -29,8 +29,9 @@ interface IImage {
 }
 
 interface ICast {
-  id: number;
-  name: string;
+  person: {
+    name: string;
+  };
   character: {
     name: string;
   };

@@ -2,11 +2,29 @@ import styles from "./ShowDetails.module.scss";
 import { processSummary } from "../../utils/helpers";
 import Cast from "../Cast/Cast";
 
+export const ShowInfo = ({ info }) => {
+  const noDetails = "-";
+  return (
+    <div className={styles.show__infoContainer}>
+      <p>{info[0]}</p>
+      <b>{info[1] ? info[1] : noDetails}</b>
+    </div>
+  );
+};
+
 const ShowDetails = ({ show }) => {
-  console.log(show);
   const { genres, network, schedule, status, image, name, summary, rating } =
     show;
-  console.log(image.original);
+
+  const showInfo = [
+    ["Streamed on:", network],
+    ["Schedule:", schedule.days.join(", ")],
+    ["Status:", status],
+    ["Genres:", genres.join(", ")],
+  ];
+
+  // const cast = [];
+
   return (
     <section className={styles.show}>
       <div className={styles.show__summary}>
@@ -23,21 +41,12 @@ const ShowDetails = ({ show }) => {
       <div className={styles.show__details}>
         <div className={styles.show__info}>
           <h3>Show Info</h3>
-          <p>
-            Streamed on: <b>{network?.name}</b>
-          </p>
-          <p>
-            Schedule:{" "}
-            <b>{schedule.days.length > 0 && `${schedule.days.join(", ")}`}</b>
-          </p>
-
-          <p>
-            Status: <b>{status}</b>
-          </p>
-          <p>Genres: {genres.length > 0 && `${genres.join(", ")}`}</p>
+          {showInfo &&
+            showInfo.map((info) => <ShowInfo key={info[0]} info={info} />)}
         </div>
-        <div className={styles.show__cast}>
-          <Cast />
+        <div className={styles.show__info}>
+          <h3>Starring</h3>
+          {/* {cast && cast.map((person) => <Cast />)} */}
         </div>
       </div>
     </section>
