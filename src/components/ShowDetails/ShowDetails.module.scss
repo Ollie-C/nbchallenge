@@ -61,7 +61,7 @@
   &__infoContainer {
     @include flex(row, flex-start, center);
     height: 5rem;
-    margin: 1rem;
+    margin: 0.2rem;
 
     p,
     b {
@@ -70,11 +70,10 @@
   }
 
   &__profileImage {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     background-size: cover;
     background-position: center;
-    border: 2px solid $primary-brown;
   }
 }

@@ -38,8 +38,8 @@ interface ICast {
 }
 
 export interface IShowsContext {
-  episodes: IEpisode[];
-  currentShow: IShow;
-  randomShow: () => void;
-  getEpisodes: (string) => void;
+  data: IEpisode[];
+  // currentShow: IShow;
+  // randomShow: () => void;
+  // getEpisodes: (string) => void;
 }

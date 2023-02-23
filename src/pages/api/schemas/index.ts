@@ -10,21 +10,18 @@ const schema = createSchema({
   typeDefs: `
 
   type Query {
-    episodes(country: String): [Episode]
     show(id: ID!): Show
     cast(id: ID!): [Cast]
   }
-  
 
+  type Query {
+    episodes(country: String, offset: Int, filter: String): [Episode] 
+  }
+  
   type Episode {
     id: ID!
-    image: String 
     season: Int
     number: Int
-    rating: String
-    airdate: String!
-    airtime: String!
-    summary: String
     show: Show!
   }
 
@@ -77,18 +74,22 @@ const schema = createSchema({
 `,
   resolvers: {
     Query: {
-      episodes: async (parents, args) => {
-        const { data } = await axios.get(`${episodesUrl}${args.country}`);
-        return data;
-      },
-      show: async (parents, args) => {
+      show: async (_parent, args) => {
         const { data } = await axios.get(`${showsUrl}/${args.id}`);
         return data;
       },
-
-      cast: async (parents, args) => {
+      cast: async (_parent, args) => {
         const { data } = await axios.get(`${showsUrl}/${args.id}/cast`);
         return data;
+      },
+      episodes: async (_parent, args) => {
+        const { data } = await axios.get(`${episodesUrl}${args.country}`);
+        if (args.filter) {
+          return data.filter((episode: any) =>
+            episode.show.name.toLowerCase().match(args.filter.toLowerCase())
+          );
+        }
+        return data.slice(args.offset, data.length);
       },
     },
   },

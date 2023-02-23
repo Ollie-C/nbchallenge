@@ -1,41 +1,26 @@
 import styles from "./Pagination.module.scss";
 
-const Navigation = ({ currentPage, totalPages, changePage }) => {
-  if (!totalPages) {
-    return;
-  }
-
-  const pages = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push(i);
-  }
+const Navigation = ({ episodes, page, setPage }) => {
+  if (!episodes) return null;
 
   return (
     <ul className={styles.navigation}>
-      {currentPage <= totalPages && currentPage > 1 && (
-        <li
+      {page > 0 && (
+        <button
           className={styles.navigation__link}
-          onClick={() => changePage("back")}
+          onClick={() => setPage(page - 1)}
         >
-          &lt;
-        </li>
+          Previous
+        </button>
       )}
-      {pages.map((page) => (
-        <li
-          key={page}
+
+      {episodes.episodes.length > 18 && (
+        <button
           className={styles.navigation__link}
-          onClick={() => changePage(page)}
+          onClick={() => setPage(page + 1)}
         >
-          {page}
-        </li>
-      ))}
-      {currentPage < totalPages && (
-        <li
-          className={styles.navigation__link}
-          onClick={() => changePage("forward")}
-        >
-          &gt;
-        </li>
+          Next
+        </button>
       )}
     </ul>
   );

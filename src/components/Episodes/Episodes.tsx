@@ -1,5 +1,4 @@
-import { useContext, useState, useEffect } from "react";
-import { ShowsContext } from "@/contexts/ShowsContext";
+import { useState } from "react";
 //Components
 import EpisodeCard from "../EpisodeCard/EpisodeCard";
 import Navigation from "../Pagination/Pagination";
@@ -7,51 +6,36 @@ import Navigation from "../Pagination/Pagination";
 import { motion } from "framer-motion";
 import styles from "./Episodes.module.scss";
 import Image from "next/image";
-//Helpers
-import { getDisplayedEpisodes } from "@/utils/helpers";
+//Types
+import { IEpisode } from "@/types/episode";
+//Apollo
+import { useQuery } from "@apollo/client";
+import { episodesQuery } from "@/lib/queries";
 
 const Episodes = () => {
-  const { episodes, getEpisodes } = useContext(ShowsContext);
-  const [filteredEpisodes, setFilteredEpisodes] = useState([]);
+  //Filter by country
+  const [country, setCountry] = useState("GB");
+  //Filter by show name match
+  const [filter, setFilter] = useState(null);
+  //Current page number
+  const [page, setPage] = useState(0);
 
-  //Create pagination - 18 episodes per page
-  const [currentPage, setCurrentPage] = useState(1);
-  const displayedEpisodes = getDisplayedEpisodes(filteredEpisodes, currentPage);
-  const totalPages = Math.ceil(filteredEpisodes.length / 18);
+  //Get data
+  const {
+    data: episodes,
+    loading,
+    error,
+  } = useQuery(episodesQuery, {
+    variables: {
+      country: country,
+      offset: page * 18,
+      // limit: page * limit + limit,
+      filter: filter,
+    },
+  });
 
-  //Navigation
-  const changePage = (change: any) => {
-    if (change === "forward") {
-      return setCurrentPage(currentPage + 1);
-    }
-    if (change === "back") {
-      return setCurrentPage(currentPage - 1);
-    }
-    return setCurrentPage(change);
-  };
+  if (error) return "Could not find shows.";
 
-  //Filter search
-  const handleChange = (e: any) => {
-    e.preventDefault();
-    const { value } = e.target;
-    setFilteredEpisodes(
-      episodes.filter((episode) => episode.show.name.toLowerCase().match(value))
-    );
-  };
-
-  useEffect(() => {
-    if (episodes.length > 0) {
-      setFilteredEpisodes(episodes);
-    }
-  }, [episodes]);
-
-  if (!episodes) {
-    return (
-      <div className={styles.loading}>
-        <h3>No results found ... </h3>
-      </div>
-    );
-  }
   return (
     <section className={styles.episodes}>
       <div className={styles.intro}>
@@ -65,19 +49,19 @@ const Episodes = () => {
           <h3>Last Added Shows</h3>
           <p
             className={styles.episodes__country}
-            onClick={() => getEpisodes("GB")}
+            onClick={() => setCountry("GB")}
           >
             UK
           </p>
           <p
             className={styles.episodes__country}
-            onClick={() => getEpisodes("US")}
+            onClick={() => setCountry("US")}
           >
             US
           </p>
           <p
             className={styles.episodes__country}
-            onClick={() => getEpisodes("JP")}
+            onClick={() => setCountry("JP")}
           >
             JAPAN
           </p>
@@ -90,7 +74,7 @@ const Episodes = () => {
             height="16"
             className={styles.episodes__icon}
           />
-          <input type="text" onChange={(e) => handleChange(e)} />
+          <input type="text" onChange={(e) => setFilter(e.target.value)} />
         </div>
       </div>
 
@@ -99,15 +83,15 @@ const Episodes = () => {
         transition={{ duration: 1 }}
         className={styles.episodeContainer}
       >
-        {displayedEpisodes.map((episode) => (
-          <EpisodeCard key={episode.id} episode={episode} />
-        ))}
+        {loading
+          ? "Loading ..."
+          : episodes.episodes
+              .map((episode: IEpisode) => (
+                <EpisodeCard key={episode.id} episode={episode} />
+              ))
+              .slice(0, 18)}
       </motion.div>
-      <Navigation
-        currentPage={currentPage}
-        totalPages={totalPages}
-        changePage={changePage}
-      />
+      <Navigation episodes={episodes} page={page} setPage={setPage} />
     </section>
   );
 };

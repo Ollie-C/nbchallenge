@@ -1,13 +1,13 @@
 import styles from "./Header.module.scss";
 import { useContext } from "react";
-import { ShowsContext } from "@/contexts/ShowsContext";
+// import { ShowsContext } from "@/contexts/ShowsContext";
 
 const Header = () => {
-  const { currentShow, randomShow } = useContext(ShowsContext);
+  // const { currentShow, randomShow } = useContext(ShowsContext);
 
   return (
     <header className={styles.header}>
-      <h1 onClick={() => randomShow()}>TV BLAND</h1>
+      <h1>TV BLAND</h1>
       {/* {currentShow && currentShow.image && (
         <>
           <div

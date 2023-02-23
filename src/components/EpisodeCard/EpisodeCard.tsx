@@ -17,7 +17,6 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
   //Shorten summary length
   const noDetails = <p>No details</p>;
   const shortSummary = summary ? processSummary(summary, 10) : noDetails;
-  console.log(id);
   return (
     <div className={styles.episodecard}>
       <Link href={`/shows/${show.id}`}>
