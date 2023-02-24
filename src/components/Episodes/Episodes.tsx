@@ -6,6 +6,7 @@ import Navigation from "../Pagination/Pagination";
 import { motion } from "framer-motion";
 import styles from "./Episodes.module.scss";
 import Image from "next/image";
+import RiseLoader from "react-spinners/RiseLoader";
 //Types
 import { IEpisode } from "@/types/episode";
 //Apollo
@@ -74,20 +75,26 @@ const Episodes = () => {
         </div>
       </div>
 
-      <motion.div
-        whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
-        transition={{ duration: 1 }}
-        className={styles.episodeContainer}
-      >
-        {loading
-          ? "Loading ..."
-          : episodes.episodes
+      {loading ? (
+        <div className={styles.loading}>
+          <RiseLoader color="#2e2e2e" />
+        </div>
+      ) : (
+        <>
+          <motion.div
+            whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
+            transition={{ duration: 1 }}
+            className={styles.episodeContainer}
+          >
+            {episodes.episodes
               .map((episode: IEpisode) => (
                 <EpisodeCard key={episode.id} episode={episode} />
               ))
               .slice(0, 18)}
-      </motion.div>
-      <Navigation episodes={episodes} page={page} setPage={setPage} />
+          </motion.div>
+          <Navigation episodes={episodes} page={page} setPage={setPage} />
+        </>
+      )}
     </section>
   );
 };
