@@ -14,11 +14,12 @@ import { episodesQuery } from "@/lib/queries";
 
 const Episodes = () => {
   //Filter by country
-  const [country, setCountry] = useState("GB");
+  const [country, setCountry] = useState<string>("GB");
+  const countries = ["GB", "US", "JP"];
   //Filter by show name match
-  const [filter, setFilter] = useState(null);
+  const [filter, setFilter] = useState<string | null>(null);
   //Current page number
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState<number>(0);
 
   //Get data
   const {
@@ -34,7 +35,7 @@ const Episodes = () => {
     },
   });
 
-  if (error) return "Could not find shows.";
+  if (error) return <p>Could not find shows.</p>;
 
   return (
     <section className={styles.episodes}>
@@ -47,24 +48,16 @@ const Episodes = () => {
       <div className={styles.episodes__header}>
         <div className={styles.episodes__countries}>
           <h3>Last Added Shows</h3>
-          <p
-            className={styles.episodes__country}
-            onClick={() => setCountry("GB")}
-          >
-            UK
-          </p>
-          <p
-            className={styles.episodes__country}
-            onClick={() => setCountry("US")}
-          >
-            US
-          </p>
-          <p
-            className={styles.episodes__country}
-            onClick={() => setCountry("JP")}
-          >
-            JAPAN
-          </p>
+          {countries &&
+            countries.map((country, index) => (
+              <p
+                key={index}
+                className={styles.episodes__country}
+                onClick={() => setCountry(country)}
+              >
+                {country}
+              </p>
+            ))}
         </div>
         <div className={styles.episodes__search}>
           <Image

@@ -14,8 +14,8 @@
   }
 
   &__image {
-    width: 25rem;
-    height: 18rem;
+    width: 23rem;
+    height: 20rem;
     background-size: cover;
     background-position: center;
     border-radius: 5px;
@@ -36,7 +36,10 @@
   &__details {
     height: 30rem;
     width: 100%;
+    margin: 2rem 0;
+    padding: 1rem 0;
     color: $primary-white;
+
     @include flex(row, space-between, flex-start);
   }
 
@@ -44,11 +47,11 @@
     width: 48%;
 
     h3 {
-      color: $primary-brown;
+      color: $primary-white;
       margin-bottom: 1rem;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       padding: 1rem;
-      border-bottom: 2px solid $primary-white;
+      // border-bottom: 1px solid $primary-white;
       border-radius: 0 0 0 8px;
     }
 
@@ -62,10 +65,10 @@
     @include flex(row, flex-start, center);
     height: 5rem;
     margin: 0.2rem;
-
+    border-top: 1px solid $primary-white;
     p,
     b {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
     }
   }
 
@@ -74,6 +77,13 @@
     height: 2.5rem;
     border-radius: 50%;
     background-size: cover;
-    background-position: center;
+    background-position: top;
+    border: 1px solid $primary-white;
+  }
+}
+
+.back {
+  &:hover {
+    cursor: pointer;
   }
 }

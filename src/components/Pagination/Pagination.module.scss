@@ -8,16 +8,17 @@
   margin: 2rem 0;
 
   &__link {
-    font-weight: 800;
     margin: 0.5rem;
+    background-color: $primary-green;
     color: $primary-white;
-
     border-radius: 8px;
     padding: 0.5rem 1rem;
     transition: all 1s ease;
     &:hover {
       cursor: pointer;
-      background-color: $primary-green;
+
+      color: $primary-brown;
+      background-color: $primary-white;
     }
   }
 }

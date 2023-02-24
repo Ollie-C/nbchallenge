@@ -14,32 +14,27 @@ export interface IShow {
   network: {
     name: string;
   };
-  schedule: {
+  schedule?: {
     days: string[];
   };
-  image: IImage;
-  rating: {
+  image?: {
+    medium: string;
+    original: string;
+  };
+  rating?: {
     average: number;
   };
-}
-
-interface IImage {
-  medium: string;
-  original: string;
 }
 
 interface ICast {
   person: {
     name: string;
+    image?: {
+      medium: string;
+      original: string;
+    };
   };
   character: {
     name: string;
   };
-}
-
-export interface IShowsContext {
-  data: IEpisode[];
-  // currentShow: IShow;
-  // randomShow: () => void;
-  // getEpisodes: (string) => void;
 }

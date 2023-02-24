@@ -1,8 +1,11 @@
 import styles from "./ShowDetails.module.scss";
-import { processSummary } from "../../utils/helpers";
 import Cast from "./CastList";
+import { ICast, IShow } from "@/types/episode";
+import { processSummary } from "../../utils/helpers";
+import Image from "next/image";
+import { useRouter } from "next/router";
 
-export const ShowInfo = ({ info }) => {
+const ShowInfo = ({ info }) => {
   const noDetails = "-";
   return (
     <div className={styles.show__infoContainer}>
@@ -12,7 +15,8 @@ export const ShowInfo = ({ info }) => {
   );
 };
 
-const ShowDetails = ({ show, cast }) => {
+const ShowDetails = ({ show, cast }: { show: IShow; cast: ICast[] }) => {
+  const router = useRouter();
   const {
     genres,
     network,
@@ -35,7 +39,6 @@ const ShowDetails = ({ show, cast }) => {
 
   return (
     <section className={styles.show}>
-      {/* Top */}
       <div className={styles.show__summary}>
         <div
           className={styles.show__image}
@@ -46,16 +49,23 @@ const ShowDetails = ({ show, cast }) => {
           <h2>{showName}</h2>
           <p>{summary ? processSummary(summary, 30) : "No show details"}</p>
         </div>
+        <Image
+          src={"/icons/back.svg"}
+          alt={"back button"}
+          width={30}
+          height={30}
+          onClick={() => router.back()}
+          className={styles.back}
+        />
       </div>
-      {/* Bottom */}
+
       <div className={styles.show__details}>
-        {/* Show Info */}
         <div className={styles.show__info}>
           <h3>Show Info</h3>
           {showInfo &&
-            showInfo.map((info) => <ShowInfo key={info[0]} info={info} />)}
+            showInfo.map((info, i) => <ShowInfo key={i} info={info} />)}
         </div>
-        {/* Starring */}
+
         <div className={styles.show__info}>
           <h3>Starring</h3>
           {filteredCast.length < 1 && <p>No cast details.</p>}

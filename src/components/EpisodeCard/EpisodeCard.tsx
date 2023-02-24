@@ -3,26 +3,19 @@ import Link from "next/link";
 import { IEpisode } from "../../types/episode";
 //Styling
 import styles from "./EpisodeCard.module.scss";
-import Image from "next/image";
 //Helpers
 import { processSummary } from "../../utils/helpers";
 
 const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
-  const { id, number, season, show } = episode;
+  const { number, season, show } = episode;
   const { image, name, summary, rating } = show;
 
-  //Conditional image render
-  const background = `url(${image?.medium})`;
-
-  //Shorten summary length
-  const noDetails = <p>No details</p>;
-  const shortSummary = summary ? processSummary(summary, 10) : noDetails;
   return (
     <div className={styles.episodecard}>
       <Link href={`/shows/${show.id}`}>
         <div
           className={styles.episodecard__image}
-          style={{ backgroundImage: background }}
+          style={{ backgroundImage: `url(${image?.medium})` }}
         ></div>
 
         <div className={styles.episodecard__details}>
@@ -38,7 +31,7 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
           </div>
           <div>
             <h3>{name}</h3>
-            <p>{shortSummary}</p>
+            <p>{summary ? processSummary(summary, 15) : "No details"}...</p>
           </div>
         </div>
       </Link>

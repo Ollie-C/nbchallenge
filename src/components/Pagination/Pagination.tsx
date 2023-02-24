@@ -1,6 +1,14 @@
 import styles from "./Pagination.module.scss";
 
-const Navigation = ({ episodes, page, setPage }) => {
+const Navigation = ({
+  episodes,
+  page,
+  setPage,
+}: {
+  episodes: any;
+  page: number;
+  setPage: any;
+}) => {
   if (!episodes) return null;
 
   return (

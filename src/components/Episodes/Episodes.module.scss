@@ -43,7 +43,7 @@
     }
 
     h3 {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
     }
   }
 
@@ -86,7 +86,9 @@
       padding: 0.8rem 2rem;
       background-color: $primary-white;
       width: 100%;
+      color: $primary-brown;
       outline: 1px solid $primary-green;
+      font-size: 0.7;
 
       @include tablet {
         padding: 4px 1.8rem;
