@@ -45,7 +45,7 @@ const ShowDetails = ({ show, cast }: { show: IShow; cast: ICast[] }) => {
           style={{ backgroundImage: `url(${image?.original})` }}
         ></div>
         <div className={styles.show__description}>
-          <p>{rating ? rating.average : "-"}/10</p>
+          <p>{rating.average ? rating.average : "-"}/10</p>
           <h2>{showName}</h2>
           <p>{summary ? processSummary(summary, 30) : "No show details"}</p>
         </div>
