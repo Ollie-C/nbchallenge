@@ -16,7 +16,7 @@ const Show = ({ data, loading }) => {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { id } = ctx.query;
-  const showsQuery = gql`query { show(id:${id}) { id name status summary genres network { name } schedule { days } image { original }} cast(id:${id}) { person { id name image { medium } } character { id name } }}`;
+  const showsQuery = gql`query { show(id:${id}) { id name status summary genres rating { average } network { name } schedule { days } image { original }} cast(id:${id}) { person { id name image { medium } } character { id name } }}`;
 
   const { data, loading } = await client.query({
     query: showsQuery,
