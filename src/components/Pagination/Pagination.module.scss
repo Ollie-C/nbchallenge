@@ -1,0 +1,24 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.navigation {
+  width: 100%;
+  align-self: center;
+  @include flex(row, center, center);
+  margin: 2rem 0;
+
+  &__link {
+    margin: 0.5rem;
+    background-color: $primary-green;
+    color: $primary-white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: all 1s ease;
+    &:hover {
+      cursor: pointer;
+
+      color: $primary-brown;
+      background-color: $primary-white;
+    }
+  }
+}

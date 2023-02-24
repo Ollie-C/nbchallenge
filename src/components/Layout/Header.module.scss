@@ -1,0 +1,33 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.header {
+  height: 50vh;
+  width: 100%;
+  background-color: $primary-white;
+  @include flex(row, center, flex-start);
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  background-size: cover;
+  padding: 2rem;
+
+  @include tablet {
+    padding: 3rem;
+    justify-content: flex-start;
+  }
+
+  @include desktop {
+    padding: 3rem $desktop-margin;
+  }
+}
+
+.logo {
+  letter-spacing: 3px;
+  font-size: 1.7rem;
+  font-weight: 100;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

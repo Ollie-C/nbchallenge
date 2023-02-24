@@ -1,0 +1,147 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.intro {
+  text-align: center;
+  min-height: 7rem;
+  height: 7rem;
+  width: 100%;
+  background-color: $primary-white;
+  border-radius: 5px;
+  margin: 1rem 0;
+  padding: 0 1.2rem;
+  @include tablet {
+    text-align: left;
+    min-height: 6.5rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  @include desktop {
+    width: 60%;
+    min-height: 3rem;
+  }
+  p {
+    line-height: 1.5rem;
+    font-size: 1rem;
+
+    @include tablet {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+.episodes {
+  &__header {
+    width: 100%;
+    z-index: 1;
+    padding: 0.2rem 0;
+    @include flex(column, center, center);
+
+    @include tablet {
+      margin: 1rem 0;
+      @include flex(row, space-between, center);
+    }
+    @include desktop {
+      @include flex(row, space-between, center);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__options {
+    width: 100%;
+    @include tablet {
+      width: 70%;
+      @include flex(row, flex-end, center);
+    }
+  }
+
+  &__countries {
+    @include flex(row, center, center);
+    width: 100%;
+    flex-wrap: wrap;
+
+    @include tablet {
+      width: auto;
+      margin-right: 5px;
+    }
+  }
+
+  &__country {
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: $primary-green;
+    border-radius: 5px;
+    margin: 0.8rem;
+    padding: 3px 5px;
+    color: $primary-white;
+    &:hover {
+      background-color: $primary-brown;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    @include tablet {
+      margin: 0.3rem;
+    }
+  }
+
+  &__search {
+    width: 100%;
+    position: relative;
+    @include tablet {
+      width: 50%;
+    }
+    @include desktop {
+      width: 15%;
+    }
+    input {
+      background: none;
+      border-radius: 5px;
+      border: none;
+      padding: 0.8rem 2rem;
+      background-color: $primary-white;
+      width: 100%;
+      color: $primary-brown;
+      outline: 1px solid $primary-green;
+      font-size: 0.7;
+
+      @include tablet {
+        padding: 4px 1.8rem;
+      }
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 5px;
+    top: 12px;
+    @include tablet {
+      top: 5px;
+    }
+  }
+}
+
+.episodeContainer {
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 1rem 0;
+  @include flex(row, center, center);
+
+  @include tablet {
+    justify-content: space-between;
+  }
+
+  @include desktop {
+    justify-content: center;
+  }
+}
+
+.loading {
+  width: 100%;
+  height: 50vh;
+  @include flex(row, center, center);
+}

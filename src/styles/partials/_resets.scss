@@ -1,3 +1,5 @@
+@use "./variables" as *;
+
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
 
 html {
@@ -14,8 +16,8 @@ html {
 }
 
 body {
-  background: #ddeaf8;
-  color: #303030;
+  background: $primary-green;
+  color: $primary-brown;
   font-family: "Roboto", sans-serif;
 }
 
