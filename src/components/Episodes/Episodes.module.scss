@@ -3,18 +3,18 @@
 
 .intro {
   text-align: center;
-  min-height: 8rem;
+  min-height: 7rem;
+  height: 7rem;
   width: 100%;
-
   background-color: $primary-white;
-  // box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   border-radius: 5px;
-  // padding: 0 1rem;
-  margin: 2rem 0;
+  margin: 1rem 0;
+  padding: 0 1.2rem;
   @include tablet {
     text-align: left;
-    width: 70%;
     min-height: 6.5rem;
+    padding: 0;
+    margin: 0;
   }
 
   @include desktop {
@@ -39,6 +39,10 @@
     @include flex(column, center, center);
 
     @include tablet {
+      margin: 1rem 0;
+      @include flex(row, space-between, center);
+    }
+    @include desktop {
       @include flex(row, space-between, center);
     }
 
@@ -47,26 +51,41 @@
     }
   }
 
+  &__options {
+    width: 100%;
+    @include tablet {
+      width: 70%;
+      @include flex(row, flex-end, center);
+    }
+  }
+
   &__countries {
-    @include flex(row, space-between, center);
+    @include flex(row, center, center);
     width: 100%;
     flex-wrap: wrap;
 
     @include tablet {
-      width: 50%;
-    }
-
-    @include desktop {
-      width: 30%;
+      width: auto;
+      margin-right: 5px;
     }
   }
 
   &__country {
-    font-size: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: $primary-green;
+    border-radius: 5px;
+    margin: 0.8rem;
+    padding: 3px 5px;
+    color: $primary-white;
     &:hover {
-      color: $primary-green;
+      background-color: $primary-brown;
       font-weight: 800;
       cursor: pointer;
+    }
+
+    @include tablet {
+      margin: 0.3rem;
     }
   }
 
@@ -74,7 +93,7 @@
     width: 100%;
     position: relative;
     @include tablet {
-      width: 30%;
+      width: 50%;
     }
     @include desktop {
       width: 15%;
@@ -111,6 +130,14 @@
   flex-wrap: wrap;
   padding: 1rem 0;
   @include flex(row, center, center);
+
+  @include tablet {
+    justify-content: space-between;
+  }
+
+  @include desktop {
+    justify-content: center;
+  }
 }
 
 .loading {

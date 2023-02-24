@@ -46,28 +46,31 @@ const Episodes = () => {
         </p>
       </div>
       <div className={styles.episodes__header}>
-        <div className={styles.episodes__countries}>
-          <h3>Last Added Shows</h3>
-          {countries &&
-            countries.map((country, index) => (
-              <p
-                key={index}
-                className={styles.episodes__country}
-                onClick={() => setCountry(country)}
-              >
-                {country}
-              </p>
-            ))}
-        </div>
-        <div className={styles.episodes__search}>
-          <Image
-            src="/icons/searchicon.svg"
-            alt="search icon"
-            width="16"
-            height="16"
-            className={styles.episodes__icon}
-          />
-          <input type="text" onChange={(e) => setFilter(e.target.value)} />
+        <h3>Last Added Shows</h3>
+
+        <div className={styles.episodes__options}>
+          <div className={styles.episodes__countries}>
+            {countries &&
+              countries.map((country, index) => (
+                <p
+                  key={index}
+                  className={styles.episodes__country}
+                  onClick={() => setCountry(country)}
+                >
+                  {country}
+                </p>
+              ))}
+          </div>
+          <div className={styles.episodes__search}>
+            <Image
+              src="/icons/searchicon.svg"
+              alt="search icon"
+              width="16"
+              height="16"
+              className={styles.episodes__icon}
+            />
+            <input type="text" onChange={(e) => setFilter(e.target.value)} />
+          </div>
         </div>
       </div>
 

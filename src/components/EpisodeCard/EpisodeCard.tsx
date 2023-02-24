@@ -31,7 +31,7 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
           </div>
           <div>
             <h3>{name}</h3>
-            <p>{summary ? processSummary(summary, 15) : "No details"}...</p>
+            <p>{summary ? processSummary(summary, 13) : "No details"}...</p>
           </div>
         </div>
       </Link>

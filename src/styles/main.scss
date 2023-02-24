@@ -6,6 +6,10 @@
   margin: 6rem 2rem;
 
   @include tablet {
-    margin: 8rem $desktop-margin;
+    margin: 7rem 3rem;
+  }
+
+  @include desktop {
+    margin: 7rem $desktop-margin;
   }
 }

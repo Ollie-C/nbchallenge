@@ -68,7 +68,9 @@ const ShowDetails = ({ show, cast }: { show: IShow; cast: ICast[] }) => {
 
         <div className={styles.show__info}>
           <h3>Starring</h3>
-          {filteredCast.length < 1 && <p>No cast details.</p>}
+          {filteredCast.length < 1 && (
+            <p className={styles.show__info}>No cast details.</p>
+          )}
           {filteredCast.map((member: any) => (
             <Cast castMember={member} key={member.person.name} />
           ))}
