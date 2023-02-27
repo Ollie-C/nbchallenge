@@ -82,8 +82,14 @@ const Episodes = () => {
       ) : (
         <>
           <motion.div
-            whileInView={{ y: [100, 50, 0], opacity: [0, 0, 1] }}
-            transition={{ duration: 1 }}
+            initial={{ y: 250 }}
+            animate={{ y: -20 }}
+            transition={{
+              delay: 0,
+              type: "spring",
+              stiffness: 100,
+              damping: 20,
+            }}
             className={styles.episodeContainer}
           >
             {episodes.episodes

@@ -5,6 +5,7 @@ import { IEpisode } from "../../types/episode";
 import styles from "./EpisodeCard.module.scss";
 //Helpers
 import { processSummary } from "../../utils/helpers";
+import Image from "next/image";
 
 const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
   const { number, season, show } = episode;
@@ -13,10 +14,22 @@ const EpisodeCard = ({ episode }: { episode: IEpisode }) => {
   return (
     <div className={styles.episodecard}>
       <Link href={`/shows/${show.id}`}>
-        <div
-          className={styles.episodecard__image}
-          style={{ backgroundImage: `url(${image?.medium})` }}
-        ></div>
+        <div className={styles.episodecard__imageContainer}>
+          {image ? (
+            <div
+              className={styles.episodecard__image}
+              style={{ backgroundImage: `url(${image?.medium})` }}
+            ></div>
+          ) : (
+            <Image
+              src={"/icons/tv.svg"}
+              alt={"TV icon"}
+              width={10}
+              height={10}
+              className={styles.episodecard__noImage}
+            />
+          )}
+        </div>
 
         <div className={styles.episodecard__details}>
           <div className={styles.episodecard__detailsTop}>

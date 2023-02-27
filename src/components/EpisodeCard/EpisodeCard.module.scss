@@ -28,7 +28,12 @@
     font-weight: 600;
   }
 
-  &__image {
+  &__imageContainer {
+    @include flex(row, center, center);
+  }
+
+  &__image,
+  &__noImage {
     border-radius: 5px 5px 0 0;
     height: 12rem;
     width: 100%;
@@ -40,6 +45,10 @@
     &:hover {
       opacity: 100%;
     }
+  }
+
+  &__noImage {
+    width: 30%;
   }
 
   &__details {
