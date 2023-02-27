@@ -17,11 +17,7 @@ Built in Next.js, tvbland makes use of the inbuilt API capability and implements
 ### Get started
 
 1. Open up your terminal and clone the repo: **git clone https://github.com/Ollie-C/tvbland.git**
-<<<<<<< HEAD
 2. Install dependencies: **npm i / npm install**
-=======
-2. Install dependencies: **npm i / npm install** 
->>>>>>> 23195ec1a20afb87c3d4c7c9bb68e8d0f2f5eeeb
 3. Give it a whirl: **npx next start**
 
 ## Details
@@ -30,6 +26,7 @@ Built in Next.js, tvbland makes use of the inbuilt API capability and implements
 
 - Framework: Next.js for in-built API and image optimisation. Better accessibility and load times.
 - Language: TypeScript for type safety and ability to match custom types with graphql schema
+- GraphQL client: Apollo client though tempted to migrate to SWR
 - GraphQL server: graphql-yoga for ease of set-up
 - Styling: Modular SASS for organised stylesheets with nesting. Framer-motion for natural animations to complement a minimalist theme
 
@@ -40,10 +37,7 @@ I tried to create a minimalist theme with simple animations built around a high 
 Around 40% of the screen height is taken up by the header, any less and I'd feel it necessary to squeeze all of the episodes into the remaining space but given the nature of the content, that just wasn't happening, and this layout gives a sense of a rich content base.
 
 ### Features
-<<<<<<< HEAD
 
-=======
->>>>>>> 23195ec1a20afb87c3d4c7c9bb68e8d0f2f5eeeb
 1. Data for all shows being shown on current date in selected area
 2. Users are able to view up to 18 episode cards per screen
 3. Pagination for remainder of episodes
@@ -52,17 +46,20 @@ Around 40% of the screen height is taken up by the header, any less and I'd feel
 6. Individual detail pages showing cast and show details
 7. Client side and server side rendering with Apollo client
 
+### Testing
+
+Whilst I'm familiar with Jest, and Apollo client, I haven't actually used these in the same app before and understanding Apollo's MockedProvider is new to me and something I'm interested to learn more about!
+
+### Lighthouse report
+
+Some room for improvement.
+![tvbland_screenshot](/public/screenshots/lighthouse.PNG)
+
 ### Unresolved bugs (not including ones that I'm still yet to discover....)
-<<<<<<< HEAD
 
 1. When filtering in search, page remains on the current page regardless of how many episode cards are being shown and can result in the page being blank unless navigating back a page
 2. Data includes duplicate shows. Whilst they are seperate episodes it would be great to filter these out
 3. Data renders twice with client side rendering
-=======
-1. When filtering in search, page remains on the current page regardless of how many episode cards are being shown and can result in the page being blank unless navigating back a page
-2. Data includes duplicate shows. Whilst they are seperate episodes it would be great to filter these out
-3. Data renders twice with client side rendering 
->>>>>>> 23195ec1a20afb87c3d4c7c9bb68e8d0f2f5eeeb
 
 ### Limitations
 
