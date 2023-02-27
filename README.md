@@ -1,6 +1,6 @@
 # tvbland
 
-Live: [coming soon]
+Live: https://nbchallenge.vercel.app/ (very buggy, see below)
 
 Github: https://github.com/Ollie-C/nbchallenge
 
@@ -48,7 +48,8 @@ Around 40% of the screen height is taken up by the header, any less and I'd feel
 
 1. When filtering in search, page remains on the current page regardless of how many episode cards are being shown and can result in the page being blank unless navigating back a page
 2. Data includes duplicate shows. Whilst they are seperate episodes it would be great to filter these out
-3. Data renders twice with client side rendering
+3. Deployment - animations are jittery [UPDATE]
+4. Deployment - dynamic pages not working. Issue with getServerSideProps hitting own API [UPDATE]
 
 ### Limitations
 
