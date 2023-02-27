@@ -24,14 +24,14 @@ Built in Next.js, tvbland makes use of the inbuilt API capability and implements
 
 ### Tools
 
-- Framework: Next.js for in-built API and image optimisation. Better accessibility and load times.
-- Language: TypeScript for type safety and ability to match custom types with graphql schema
-- GraphQL client: Apollo client though tempted to migrate to SWR
-- GraphQL server: graphql-yoga for ease of set-up
-- Styling: Modular SASS for organised stylesheets with nesting. Framer-motion for natural animations to complement a minimalist theme
-- ESLint
-- Prettier
-- Git flow
+- Framework: **Next.js** for in-built API and image optimisation. Better accessibility and load times.
+- Language: **TypeScript** for type safety and ability to match custom types with graphql schema
+- GraphQL client: **Apollo client** though tempted to migrate to SWR
+- GraphQL server: **graphql-yoga** for ease of set-up
+- Styling: Modular **SASS** for organised stylesheets with nesting. Framer-motion for natural animations to complement a minimalist theme
+- **ESLint**
+- **Prettier**
+- **Git flow**
 - (Jest with React Testing Library) *not yet implemented*
 
 ### Design Approach
@@ -65,7 +65,8 @@ Potentially room for further image optimisation
 1. When filtering in search, page remains on the current page regardless of how many episode cards are being shown and can result in the page being blank unless navigating back a page
 2. Data includes duplicate shows. Whilst they are seperate episodes it would be great to filter these out
 3. Production - animations are jittery [UPDATE]
-
+4. Production - images look stretched
+5. Production - filter search does not render results instantly and the functionality is ultimately lost
 
 ### Limitations
 
