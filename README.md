@@ -16,9 +16,9 @@ Built in Next.js, tvbland makes use of the inbuilt API capability and implements
 
 ### Get started
 
-1. Open up your terminal and clone the repo: **git clone https://github.com/Ollie-C/tvbland.git**
-2. Install dependencies: **npm i / npm install**
-3. Give it a whirl: **npx next start**
+1. Open up your terminal and clone the repo: ``git clone https://github.com/Ollie-C/tvbland.git``
+2. Install dependencies: ``npm i / npm install``
+3. Give it a whirl: ``npx next start``
 
 ## Details
 
@@ -29,6 +29,10 @@ Built in Next.js, tvbland makes use of the inbuilt API capability and implements
 - GraphQL client: Apollo client though tempted to migrate to SWR
 - GraphQL server: graphql-yoga for ease of set-up
 - Styling: Modular SASS for organised stylesheets with nesting. Framer-motion for natural animations to complement a minimalist theme
+- ESLint
+- Prettier
+- Git flow
+- (Jest with React Testing Library) *not yet implemented*
 
 ### Design Approach
 
@@ -52,8 +56,9 @@ Whilst I'm familiar with Jest, and Apollo client, I haven't actually used these 
 
 ### Lighthouse report
 
-Some room for improvement.
 ![tvbland_screenshot](/public/screenshots/lighthouse.PNG)
+
+Potentially room for further image optimisation
 
 ### Unresolved bugs (not including ones that I'm still yet to discover....)
 
