@@ -40,12 +40,23 @@ const ShowDetails = ({ show, cast }: { show: IShow; cast: ICast[] }) => {
   return (
     <section className={styles.show}>
       <div className={styles.show__summary}>
-        <div
-          className={styles.show__image}
-          style={{ backgroundImage: `url(${image?.original})` }}
-        ></div>
+        {image ? (
+          <Image
+            src={image.original}
+            alt={showName}
+            width={500}
+            height={600}
+            className={styles.show__image}
+          />
+        ) : (
+          <div
+            className={styles.show__image}
+            style={{ backgroundImage: `url(${image?.original})` }}
+          ></div>
+        )}
+
         <div className={styles.show__description}>
-          <p>{rating ? rating.average : "-"}/10</p>
+          <p>{rating.average ? rating.average : "-"}/10</p>
           <h2>{showName}</h2>
           <p>{summary ? processSummary(summary, 30) : "No show details"}</p>
         </div>
