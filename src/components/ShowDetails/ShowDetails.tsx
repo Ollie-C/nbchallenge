@@ -1,12 +1,12 @@
-import styles from "./ShowDetails.module.scss";
-import Cast from "./CastList";
-import { ICast, IShow } from "@/types/episode";
-import { processSummary } from "../../utils/helpers";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import styles from './ShowDetails.module.scss';
+import Cast from './CastList';
+import { ICast, IShow } from '@/types/episode';
+import { processSummary, getSecureImageUrl } from '../../utils/helpers';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const ShowInfo = ({ info }) => {
-  const noDetails = "-";
+  const noDetails = '-';
   return (
     <div className={styles.show__infoContainer}>
       <p>{info[0]}</p>
@@ -28,41 +28,53 @@ const ShowDetails = ({ show, cast }: { show: IShow; cast: ICast[] }) => {
     rating,
   } = show;
   const showInfo = [
-    ["Streamed on:", network?.name],
-    ["Schedule:", schedule.days.join(", ")],
-    ["Status:", status],
-    ["Genres:", genres.join(", ")],
+    ['Streamed on:', network?.name],
+    ['Schedule:', schedule.days.join(', ')],
+    ['Status:', status],
+    ['Genres:', genres.join(', ')],
   ];
 
   //Get only first 5 cast members
   const filteredCast = cast.slice(0, 5);
+  const imageUrl = image ? getSecureImageUrl(image.original) : null;
 
   return (
     <section className={styles.show}>
       <div className={styles.show__summary}>
-        {image ? (
+        {imageUrl ? (
           <Image
-            src={image.original}
+            src={imageUrl}
             alt={showName}
             width={500}
             height={600}
             className={styles.show__image}
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+            priority
+            loading='eager'
+            sizes='(max-width: 768px) 100vw, 500px'
           />
         ) : (
           <div
             className={styles.show__image}
-            style={{ backgroundImage: `url(${image?.original})` }}
-          ></div>
+            style={{ backgroundImage: `url(/icons/tv.svg)` }}></div>
         )}
 
         <div className={styles.show__description}>
-          <p>{rating.average ? rating.average : "-"}/10</p>
+          <div className={styles.show__rating}>
+            <Image
+              src='/icons/star.svg'
+              alt='rating star'
+              width={24}
+              height={24}
+            />
+            <p>{rating.average ? rating.average : '-'}/10</p>
+          </div>
           <h2>{showName}</h2>
-          <p>{summary ? processSummary(summary, 30) : "No show details"}</p>
+          <p>{summary ? processSummary(summary, 30) : 'No show details'}</p>
         </div>
         <Image
-          src={"/icons/back.svg"}
-          alt={"back button"}
+          src={'/icons/back.svg'}
+          alt={'back button'}
           width={30}
           height={30}
           onClick={() => router.back()}

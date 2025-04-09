@@ -1,26 +1,41 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from 'react';
 //Components
-import EpisodeCard from "../EpisodeCard/EpisodeCard";
-import Navigation from "../Pagination/Pagination";
+import EpisodeCard from '../EpisodeCard/EpisodeCard';
+import Navigation from '../Pagination/Pagination';
 //Styling
-import { motion } from "framer-motion";
-import styles from "./Episodes.module.scss";
-import Image from "next/image";
-import RiseLoader from "react-spinners/RiseLoader";
+import { motion } from 'framer-motion';
+import styles from './Episodes.module.scss';
+import Image from 'next/image';
+import RiseLoader from 'react-spinners/RiseLoader';
 //Types
-import { IEpisode } from "@/types/episode";
+import { IEpisode } from '@/types/episode';
 //Apollo
-import { useQuery } from "@apollo/client";
-import { episodesQuery } from "@/lib/queries";
+import { useQuery } from '@apollo/client';
+import { episodesQuery } from '@/lib/queries';
 
 const Episodes = () => {
   //Filter by country
-  const [country, setCountry] = useState<string>("GB");
-  const countries = ["GB", "US", "JP"];
+  const [country, setCountry] = useState<string>('GB');
+  const countries = ['GB', 'US', 'JP'];
   //Filter by show name match
   const [filter, setFilter] = useState<string | null>(null);
   //Current page number
   const [page, setPage] = useState<number>(0);
+
+  // Debounced search handling
+  const handleSearchChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      const timeoutId = setTimeout(() => {
+        setFilter(value);
+        // Reset page on new search
+        setPage(0);
+      }, 300);
+
+      return () => clearTimeout(timeoutId);
+    },
+    []
+  );
 
   //Get data
   const {
@@ -31,10 +46,14 @@ const Episodes = () => {
     variables: {
       country: country,
       offset: page * 18,
-      // limit: page * limit + limit,
       filter: filter,
     },
   });
+
+  const displayedEpisodes = useMemo(() => {
+    if (!episodes?.episodes?.length) return [];
+    return episodes.episodes.slice(0, 18);
+  }, [episodes]);
 
   if (error) return <p>Could not find shows.</p>;
 
@@ -52,51 +71,69 @@ const Episodes = () => {
         <div className={styles.episodes__options}>
           <div className={styles.episodes__countries}>
             {countries &&
-              countries.map((country, index) => (
+              countries.map((countryCode, index) => (
                 <p
                   key={index}
-                  className={styles.episodes__country}
-                  onClick={() => setCountry(country)}
-                >
-                  {country}
+                  className={`${styles.episodes__country} ${
+                    countryCode === country
+                      ? styles.episodes__country_active
+                      : ''
+                  }`}
+                  onClick={() => setCountry(countryCode)}>
+                  {countryCode}
                 </p>
               ))}
           </div>
           <div className={styles.episodes__search}>
             <Image
-              src="/icons/searchicon.svg"
-              alt="search icon"
-              width="16"
-              height="16"
+              src='/icons/searchicon.svg'
+              alt='search icon'
+              width={16}
+              height={16}
               className={styles.episodes__icon}
             />
-            <input type="text" onChange={(e) => setFilter(e.target.value)} />
+            <input
+              type='text'
+              placeholder='Search shows...'
+              onChange={handleSearchChange}
+              aria-label='Search shows'
+            />
           </div>
         </div>
       </div>
 
       {loading ? (
         <div className={styles.loading}>
-          <RiseLoader color="#2e2e2e" />
+          <RiseLoader color='#2e2e2e' />
         </div>
       ) : (
         <>
           <motion.div
-            initial={{ y: 250 }}
-            animate={{ y: -20 }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              delay: 0,
-              type: "spring",
-              stiffness: 100,
+              type: 'spring',
+              stiffness: 50,
               damping: 20,
+              staggerChildren: 0.1,
             }}
             className={styles.episodeContainer}
-          >
-            {episodes.episodes
-              .map((episode: IEpisode) => (
-                <EpisodeCard key={episode.id} episode={episode} />
+            style={{ width: '100%' }}>
+            {displayedEpisodes.length > 0 ? (
+              displayedEpisodes.map((episode: IEpisode, index: number) => (
+                <motion.div
+                  key={episode.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: index * 0.05 }}>
+                  <EpisodeCard episode={episode} />
+                </motion.div>
               ))
-              .slice(0, 18)}
+            ) : (
+              <p className={styles.no_results}>
+                No shows found matching your search.
+              </p>
+            )}
           </motion.div>
           <Navigation episodes={episodes} page={page} setPage={setPage} />
         </>

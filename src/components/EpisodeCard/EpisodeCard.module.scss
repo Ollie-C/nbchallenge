@@ -1,24 +1,24 @@
-@use "../../styles/partials/variables" as *;
-@use "../../styles/partials/mixins" as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
 
 .episodecard {
   border-radius: 5px;
-  background-color: $primary-green;
+  background-color: #e5f7a3;
   border: 1px solid $primary-brown;
   width: 100%;
-  margin: 0.5rem 0;
+  height: 100%;
+  min-height: 320px;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  @include tablet {
+    min-height: 380px;
+  }
 
   &:hover {
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
-  }
-  @include tablet {
-    margin: 3px;
-    width: 47%;
-  }
-
-  @include desktop {
-    width: 16%;
-    margin: 4px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 8px;
+    transform: translateY(-2px);
   }
 
   p,
@@ -29,35 +29,53 @@
   }
 
   &__imageContainer {
-    @include flex(row, center, center);
-  }
-
-  &__image,
-  &__noImage {
-    border-radius: 5px 5px 0 0;
-    height: 12rem;
     width: 100%;
-    background-size: cover;
-    background-position: top;
-    background-repeat: no-repeat;
-    opacity: 75%;
+    height: 10rem;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px 5px 0 0;
 
-    &:hover {
-      opacity: 100%;
+    @include tablet {
+      height: 12rem;
     }
   }
 
+  &__image {
+    width: 100%;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__noImageContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+  }
+
   &__noImage {
-    width: 30%;
+    opacity: 0.5;
   }
 
   &__details {
-    height: 9rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
     padding: 0.4rem 0.8rem;
+
     h3 {
-      font-size: 1rem;
+      font-size: 1.1rem;
       letter-spacing: 0;
       color: #000;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+      line-height: 1.3;
     }
     p {
       padding: 0.5rem 0;
@@ -75,9 +93,22 @@
   }
 
   &__rating {
-    border-bottom: 1px solid $primary-white;
     font-size: 1.1rem;
     font-weight: 600;
     padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    p {
+      color: #2e2e2e;
+      font-weight: 700;
+    }
+  }
+
+  &__star {
+    margin-bottom: 2px;
+    width: 16px;
+    height: 16px;
   }
 }
