@@ -5,6 +5,12 @@
   align-items: $align;
 }
 
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
 @mixin tablet {
   @media screen and (min-width: 481px) {
     @content;
