@@ -13,19 +13,15 @@ const NonCriticalStyles = dynamic(
   { ssr: false }
 );
 
-// Prefetch key pages
-const prefetchPages = () => {
+const App = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
+
   useEffect(() => {
     // Prefetch the homepage and show details page
     router.prefetch('/');
     // We can't prefetch dynamic routes directly, but we can prefetch a common pattern
     router.prefetch('/shows/[id]');
   }, [router]);
-};
-
-const App = ({ Component, pageProps }: AppProps) => {
-  prefetchPages();
 
   return (
     <ApolloProvider client={client}>

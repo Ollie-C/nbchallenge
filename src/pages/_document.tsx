@@ -17,7 +17,6 @@ export default function Document() {
           content='TV Bland - TV Show and web series database'
         />
         <link rel='icon' href='/favicon.ico' />
-        <title>TV Bland</title>
         <link
           rel='preconnect'
           href='https://api.tvmaze.com'

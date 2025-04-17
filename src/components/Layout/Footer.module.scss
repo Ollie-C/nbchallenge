@@ -1,14 +1,31 @@
-@use "../../styles/partials/variables" as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
 
 .footer {
-  text-align: center;
+  background-color: $primary-white;
   padding: 3rem 0;
-  margin: 0;
-  color: $primary-white;
+  margin-top: 3rem;
+  box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.05);
+
+  &__content {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 2rem;
+  }
 
   &__title {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     letter-spacing: 2px;
     font-weight: 600;
+    color: $primary-brown;
+    margin-bottom: 0.8rem;
+  }
+
+  &__copyright {
+    font-size: 0.75rem;
+    color: rgba(230, 230, 230, 0.7);
+    letter-spacing: 1px;
   }
 }

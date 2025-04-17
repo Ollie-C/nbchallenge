@@ -4,21 +4,26 @@
 .header {
   height: 50vh;
   width: 100%;
-  background-color: $primary-white;
-  @include flex(row, space-between, flex-start);
+  background: linear-gradient(to bottom, #2e2e2e 0%, #3a3a3a 100%);
   position: absolute;
   top: 0;
   z-index: -1;
-  background-size: cover;
-  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-  @include tablet {
-    padding: 3rem;
-    justify-content: space-between;
-  }
+  &__content {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    @include flex(row, space-between, flex-start);
+    padding: 2rem;
 
-  @include desktop {
-    padding: 3rem $desktop-margin;
+    @include tablet {
+      padding: 3rem;
+    }
+
+    @include desktop {
+      padding: 3rem $desktop-margin;
+    }
   }
 }
 
@@ -26,9 +31,13 @@
   letter-spacing: 3px;
   font-size: 1.7rem;
   font-weight: 100;
+  color: $primary-brown;
+  transition: all 0.3s ease;
 
   &:hover {
     cursor: pointer;
+    color: $primary-green;
+    transform: translateY(-2px);
   }
 }
 
@@ -36,10 +45,12 @@
   cursor: pointer;
   padding: 0.5rem;
   border-radius: 50%;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
+  background-color: rgba(230, 230, 230, 0.1);
 
   &:hover {
     background-color: rgba(230, 230, 230, 0.2);
+    transform: translateY(-2px);
   }
 }
 

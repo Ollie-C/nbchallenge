@@ -1,14 +1,25 @@
-import { GetServerSideProps } from "next";
-import ShowDetails from "@/components/ShowDetails/ShowDetails";
-import client from "@/lib/apollo-client";
-import { gql } from "@apollo/client";
-import RiseLoader from "react-spinners/RiseLoader";
+import { GetServerSideProps } from 'next';
+import ShowDetails from '@/components/ShowDetails/ShowDetails';
+import client from '@/lib/apollo-client';
+import { gql } from '@apollo/client';
+import RiseLoader from 'react-spinners/RiseLoader';
+import Head from 'next/head';
 
 const Show = ({ data, loading }) => {
-  if (loading) return <RiseLoader color="#2e2e2e" />;
+  if (loading) return <RiseLoader color='#2e2e2e' />;
 
   return (
     <>
+      <Head>
+        <title>{data.show.name} - TV Bland</title>
+        <meta
+          name='description'
+          content={`${data.show.name} - ${
+            data.show.summary?.replace(/<[^>]*>/g, '').substring(0, 160) ||
+            'Show details'
+          }`}
+        />
+      </Head>
       <ShowDetails show={data.show} cast={data.cast} />
     </>
   );
@@ -25,7 +36,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   return {
     props: {
       loading,
-
       data,
     },
   };

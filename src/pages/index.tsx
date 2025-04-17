@@ -1,10 +1,16 @@
-import Episodes from "@/components/Episodes/Episodes";
+import Episodes from '@/components/Episodes/Episodes';
+import Head from 'next/head';
 
 const Home = () => {
   return (
-    <main className="main">
-      <Episodes />
-    </main>
+    <>
+      <Head>
+        <title>TV Bland - TV Show Database</title>
+      </Head>
+      <main className='main'>
+        <Episodes />
+      </main>
+    </>
   );
 };
 
